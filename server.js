@@ -4,7 +4,7 @@ const cheerio = require("cheerio");
 
 const app = express();
 
-const url = "https://letterboxd.com/mregis/watchlist";
+const url = "https://letterboxd.com/fchang76/watchlist";
 // const test = "https://letterboxd.com/film/in-the-mood-for-love/watch";
 // axios(url).then((res) => {
 // 	const html = res.data;
