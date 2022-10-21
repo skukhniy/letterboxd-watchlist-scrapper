@@ -1,57 +1,57 @@
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
+const fs = require("fs");
+const { parse } = require("csv-parse");
 
 const app = express();
 
 const url =
-	"https://www.boston.com/culture/streaming/2022/09/29/new-movies-tv-streaming-october-2022-netflix-hulu-hbo-max-amazon-prime-disney-plus/";
+	"https://comicbook.com/movies/news/streaming-october-2022-new-movies-tv-netflix-disney-plus-hbo-max-hulu-peacock-paramount/#1";
 
-axios(url).then((res) => {
-	const html = res.data;
-	console.log(html);
-	// const $ = cheerio.load(html);
-});
+const newToStream = [];
 
-const movies = [];
+axios(url)
+	.then((res) => {
+		// load html page into cheerio
+		const html = res.data;
+		const $ = cheerio.load(html);
+		// filter to content divs, loop through each div
+		$(".content-gallery-content div", html).each((i, el) => {
+			const div = $(el).html();
 
-// const dispatchRequest = (page) => {
-// 	console.log(`${url}/page/${page}`);
-// 	axios(`${url}/page/${page}`)
-// 		.then((res) => {
-// 			const html = res.data;
-// 			const $ = cheerio.load(html);
+			// filter again by divs that include the <strong> tag
+			if (div.includes("<strong>") & (i === 2)) {
+				// save the date for this div
+				const date = $(el).find("h2").html();
+				// selector of <p> tags in this loop
+				const pTags = $(el).find("p").toArray();
 
-// 			$(".poster-container", html).each((i, el) => {
-// 				const title = $(el).find("img").attr("alt");
-// 				const movieRoute = $(el).find("div").data("target-link");
+				// loop through each paragraph element
+				pTags.forEach((elem) => {
+					const selector = $(elem);
+					// save name of streaming service in this paragraph tag
+					const streamService = selector.find("strong").html();
+					// find all movie titles and save as Array
+					const movies = selector.find("em").toArray();
 
-// 				movies.push({ title: title, url: url });
-// 			});
-// 			if ($(".poster-container").length !== 0) {
-// 				return dispatchRequest(page + 1);
-// 			} else {
-// 				console.log("yay");
-// 				console.log(movies);
-// 				console.log(`There are ${movies.length} in this watchlist`);
-// 			}
-// 		})
-// 		.catch((err) => console.log(err));
-// };
-// dispatchRequest(1);
-
-// axios
-// 	.request(options)
-// 	.then(function (response) {
-// 		// console.log(response.data.results);
-// 		const data = response.data.results;
-// 		data.forEach((movie) => {
-// 			netflixInfo.push([movie.title, movie.year]);
-// 		});
-// 		console.log(netflixInfo);
-// 	})
-// 	.catch(function (error) {
-// 		console.error(error);
-// 	});
+					// loop through array of movies
+					movies.forEach((movie) => {
+						const movieSelector = $(movie);
+						const movieTitle = movieSelector.html();
+						// create new movie object, append to main array
+						newObj = {
+							movie: movieTitle,
+							streaming: streamService,
+							date: date,
+						};
+						newToStream.push(newObj);
+					});
+				});
+			}
+		});
+		console.log(newToStream);
+	})
+	.catch((err) => console.log(err));
 
 app.listen(8000, () => console.log("server running on PORT 8000"));
