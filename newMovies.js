@@ -6,7 +6,6 @@ const app = express();
 
 const url =
 	"https://www.boston.com/culture/streaming/2022/09/29/new-movies-tv-streaming-october-2022-netflix-hulu-hbo-max-amazon-prime-disney-plus/";
-
 axios(url).then((res) => {
 	const html = res.data;
 	console.log(html);
