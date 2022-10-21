@@ -3,12 +3,15 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const fs = require("fs");
 const { parse } = require("csv-parse");
+const { stringify } = require("csv-stringify");
+const { title } = require("process");
 
 const app = express();
 
+// const url =
+// 	"https://comicbook.com/movies/news/streaming-october-2022-new-movies-tv-netflix-disney-plus-hbo-max-hulu-peacock-paramount/#1";
 const url =
-	"https://comicbook.com/movies/news/streaming-october-2022-new-movies-tv-netflix-disney-plus-hbo-max-hulu-peacock-paramount/#1";
-
+	"https://comicbook.com/movies/news/streaming-new-september-2022-netflix-disney-plus-hbo-max-paramount-peacock/#4";
 const newToStream = [];
 
 axios(url)
@@ -21,11 +24,9 @@ axios(url)
 			const div = $(el).html();
 
 			// filter again by divs that include the <strong> tag
-			if (div.includes("<strong>") & (i === 2)) {
-				// save the date for this div
-				const date = $(el).find("h2").html();
-				// selector of <p> tags in this loop
-				const pTags = $(el).find("p").toArray();
+			if (div.includes("<strong>")) {
+				const date = $(el).find("h2").html(); // save the date for this div
+				const pTags = $(el).find("p").toArray(); // selector of <p> tags in this loop
 
 				// loop through each paragraph element
 				pTags.forEach((elem) => {
@@ -38,7 +39,9 @@ axios(url)
 					// loop through array of movies
 					movies.forEach((movie) => {
 						const movieSelector = $(movie);
-						const movieTitle = movieSelector.html();
+						let movieTitle = movieSelector.html();
+						movieTitle = movieTitle.replace("<br>", "");
+						movieTitle = movieTitle.replace("&amp;", "&");
 						// create new movie object, append to main array
 						newObj = {
 							movie: movieTitle,
@@ -51,6 +54,19 @@ axios(url)
 			}
 		});
 		console.log(newToStream);
+
+		const filename = "NewStreaming.csv";
+		const writableStream = fs.createWriteStream(filename);
+
+		const columns = ["Movie Title", "Streaming Service", "Date"];
+		const stringifier = stringify({ header: true, columns: columns });
+		newToStream.forEach((obj) => {
+			exportArray = Object.values(obj);
+			stringifier.write(exportArray);
+		});
+
+		stringifier.pipe(writableStream);
+		console.log("Finished writing data");
 	})
 	.catch((err) => console.log(err));
 
