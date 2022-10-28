@@ -75,10 +75,10 @@ function scrapeWatchlist(username) {
 	// array to store watchlist movie data
 	const movies = [];
 
-	const dispatchRequest = (page) => {
+	const dispatchRequest = async (page) => {
 		console.log(`${url}/page/${page}`);
 		// load watchlist data for the page
-		axios(`${url}/page/${page}`)
+		await axios(`${url}/page/${page}`)
 			.then((res) => {
 				const html = res.data;
 				const $ = cheerio.load(html);
@@ -97,22 +97,57 @@ function scrapeWatchlist(username) {
 				if ($(".poster-container").length !== 0) {
 					return dispatchRequest(page + 1);
 				} else {
-					console.log("yay");
-					console.log(movies);
 					console.log(`There are ${movies.length} in this watchlist`);
-					return;
 				}
 			})
 			.catch((err) => console.log(err));
+		return movies;
 	};
-	dispatchRequest(1);
-
-	return movies;
+	return dispatchRequest(1);
 }
+
+function newList(boxd, database) {
+	const newList = [];
+
+	// compare letterboxd list to database list
+
+	// return new list
+}
+
+// exports.getBoxdList = async (req, res) => {
+// 	const boxdArray = scrapeWatchlist(req.params.user);
+// 	console.log(boxdArray);
+// 	try {
+// 		res.json(boxdArray);
+// 	} catch (err) {
+// 		console.log(err);
+// 		res.status(400).json({ message: `${err}` });
+// 	}
+// };
+
+exports.getBoxdList = async (req, res) => {
+	try {
+		let boxdList = await scrapeWatchlist(req.params.user);
+		console.log(boxdList);
+		res.json(boxdList);
+	} catch (err) {
+		console.log(err);
+		res.status(400).json({ message: `${err}` });
+	}
+};
+
+exports.getMonthly = async (req, res) => {
+	try {
+		res.send("Monthly List");
+	} catch (err) {
+		res.status(400).json({ message: "error" });
+	}
+};
 
 exports.getCleanList = async (req, res) => {
 	try {
-		console.log("Cleaned List");
+		res.send("Cleaned List");
+		return;
 	} catch (err) {
 		res.status(400).json({ message: "error" });
 	}
