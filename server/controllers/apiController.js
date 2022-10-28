@@ -4,6 +4,7 @@ const fs = require("fs");
 const { parse } = require("csv-parse");
 const { stringify } = require("csv-stringify");
 const { title } = require("process");
+const Monthly = require("../models/NewStreaming");
 
 function scrapeNewStreaming() {
 	const url =
@@ -103,6 +104,7 @@ function scrapeWatchlist(username) {
 			.catch((err) => console.log(err));
 		return movies;
 	};
+	// recurrsion func, returns full movie list
 	return dispatchRequest(1);
 }
 
@@ -114,17 +116,7 @@ function newList(boxd, database) {
 	// return new list
 }
 
-// exports.getBoxdList = async (req, res) => {
-// 	const boxdArray = scrapeWatchlist(req.params.user);
-// 	console.log(boxdArray);
-// 	try {
-// 		res.json(boxdArray);
-// 	} catch (err) {
-// 		console.log(err);
-// 		res.status(400).json({ message: `${err}` });
-// 	}
-// };
-
+//
 exports.getBoxdList = async (req, res) => {
 	try {
 		let boxdList = await scrapeWatchlist(req.params.user);
@@ -138,9 +130,10 @@ exports.getBoxdList = async (req, res) => {
 
 exports.getMonthly = async (req, res) => {
 	try {
-		res.send("Monthly List");
+		const MonthlyList = await Monthly.find();
+		res.json(MonthlyList);
 	} catch (err) {
-		res.status(400).json({ message: "error" });
+		res.status(400).json({ message: `${err}` });
 	}
 };
 
