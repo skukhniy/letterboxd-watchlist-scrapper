@@ -59,13 +59,15 @@ function scrapeNewStreaming() {
 }
 
 exports.uploadMonthly = async (req, res) => {
-	Monthly.remove({});
+	// delete previous documents in the collection
+	await Monthly.remove({});
 	console.log("removed DB");
 	const url =
 		"https://comicbook.com/movies/news/streaming-october-2022-new-movies-tv-netflix-disney-plus-hbo-max-hulu-peacock-paramount/#1";
-	const newToStream = [];
+	// const url =
+	// 	"https://comicbook.com/movies/news/streaming-new-september-2022-netflix-disney-plus-hbo-max-paramount-peacock/#4";
 
-	axios(url)
+	await axios(url)
 		.then((res) => {
 			// load html page into cheerio
 			const html = res.data;
@@ -95,17 +97,16 @@ exports.uploadMonthly = async (req, res) => {
 							movieTitle = movieTitle.replace("&amp;", "&");
 							// create new movie object, append to main array
 							const newObj = new Monthly({
-								movie: movieTitle,
-								streaming: streamService,
+								movieTitle: movieTitle,
+								streamingService: streamService,
 								date: date,
 							});
+							console.log(newObj);
 							newObj.save();
 						});
 					});
 				}
 			});
-			console.log(newToStream);
-			return newToStream;
 		})
 		.catch((err) => console.log(err));
 	try {
@@ -114,7 +115,6 @@ exports.uploadMonthly = async (req, res) => {
 		res.status(400).json({ message: `${err}` });
 	}
 };
-
 exports.getMonthly = async (req, res) => {
 	try {
 		const MonthlyList = await Monthly.find();

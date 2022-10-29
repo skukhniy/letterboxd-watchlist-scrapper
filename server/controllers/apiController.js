@@ -144,13 +144,13 @@ exports.getCleanList = async (req, res) => {
 
 	boxdList.forEach((movie) => {
 		newStreamingList.forEach((streamingObj) => {
-			console.log(streamingObj.MovieTitle);
-			if (movie.title === streamingObj["Movie Title"]) {
+			console.log(streamingObj.movieTitle);
+			if (movie.title === streamingObj.movieTitle) {
 				cleanedList.push({
 					title: movie.title,
-					streaming: streamingObj["Streaming Service"],
+					streaming: streamingObj.streamingService,
 					boxd_url: movie.url,
-					date: streamingObj.Date,
+					date: streamingObj.date,
 				});
 			}
 		});
