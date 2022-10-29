@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
 const MonthlySchema = mongoose.Schema({
-	"Movie Title": String,
-	"Streaming Service": String,
+	MovieTitle: String,
+	StreamingService: String,
 	Date: String,
 });
+mongoose.pluralize(null);
 
 module.exports = mongoose.model("new-streaming", MonthlySchema);

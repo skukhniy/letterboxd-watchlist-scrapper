@@ -15,7 +15,12 @@ dotenv.config();
 // connect to DB
 const mongoDB = process.env.DATABASE_URL;
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoDB, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	dbName: "database",
+});
+
 const db = mongoose.connection;
 
 // Bind connection to error event (to get notification of connection errors)
@@ -31,6 +36,7 @@ var app = express();
 // routers
 var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/api");
+const NewStreaming = require("./models/NewStreaming");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

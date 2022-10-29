@@ -53,19 +53,7 @@ function scrapeNewStreaming() {
 				}
 			});
 			console.log(newToStream);
-
-			const filename = "NewStreaming.csv";
-			const writableStream = fs.createWriteStream(filename);
-
-			const columns = ["Movie Title", "Streaming Service", "Date"];
-			const stringifier = stringify({ header: true, columns: columns });
-			newToStream.forEach((obj) => {
-				exportArray = Object.values(obj);
-				stringifier.write(exportArray);
-			});
-
-			stringifier.pipe(writableStream);
-			console.log("Finished writing data");
+			return newToStream;
 		})
 		.catch((err) => console.log(err));
 }
