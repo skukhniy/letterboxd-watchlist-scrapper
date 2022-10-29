@@ -138,9 +138,28 @@ exports.getMonthly = async (req, res) => {
 };
 
 exports.getCleanList = async (req, res) => {
+	const cleanedList = [];
+	const boxdList = await scrapeWatchlist(req.params.user);
+	const newStreamingList = await Monthly.find();
+
+	boxdList.forEach((movie) => {
+		newStreamingList.forEach((streamingObj) => {
+			console.log(streamingObj.MovieTitle);
+			if (movie.title === streamingObj["Movie Title"]) {
+				cleanedList.push({
+					title: movie.title,
+					streaming: streamingObj["Streaming Service"],
+					boxd_url: movie.url,
+					date: streamingObj.Date,
+				});
+			}
+		});
+	});
+
+	// const cleanedList = boxdList.filter((element) => array2.includes(element));
+
 	try {
-		res.send("Cleaned List");
-		return;
+		res.send(cleanedList);
 	} catch (err) {
 		res.status(400).json({ message: "error" });
 	}
