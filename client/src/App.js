@@ -3,9 +3,13 @@ import "./styles/App.scss";
 function App() {
 	return (
 		<div className="App">
-			<h1>Letterboxd Watchlist Movies Now Streaming</h1>
-			<p>Enter Your Letterboxd Username:</p>
-			<input></input>
+			<div className="text-center mt-5">
+				<h1>Letterboxd Watchlist Movies Now Streaming</h1>
+			</div>
+			<div className="text-center">
+				<p>Enter Your Letterboxd Username:</p>
+				<input></input>
+			</div>
 		</div>
 	);
 }
