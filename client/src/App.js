@@ -38,6 +38,12 @@ function App() {
 					</button>
 				</form>
 			</div>
+			<div className="text-center mt-3">
+				{boxdStreaming !== [] &&
+					boxdStreaming.map((movie) => (
+						<p>{`${movie.title} - ${movie.streaming} -${movie.date}`}</p>
+					))}
+			</div>
 		</div>
 	);
 }
