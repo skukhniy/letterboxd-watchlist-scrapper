@@ -4,8 +4,11 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
 	const [boxdStreaming, setBoxdStreaming] = useState([]);
-	const fetchBoxdStreaming = async (user) => {
-		const response = await fetch(`/api/${user}`);
+	const [boxdUser, setBoxdUser] = useState("");
+	const fetchBoxdStreaming = async (e) => {
+		e.preventDefault();
+		const response = await fetch(`/api/new/${boxdUser}`);
+		console.log(response);
 		const json = await response.json();
 
 		if (response.ok) {
@@ -26,7 +29,13 @@ function App() {
 			<div className="text-center">
 				<p>Letterboxd Username:</p>
 				<form action="get">
-					<input></input>
+					<input
+						id="boxdUser"
+						onChange={(e) => setBoxdUser(e.target.value)}
+					></input>
+					<button type="submit" onClick={fetchBoxdStreaming}>
+						Submit
+					</button>
 				</form>
 			</div>
 		</div>
