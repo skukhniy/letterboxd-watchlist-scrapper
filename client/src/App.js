@@ -1,16 +1,19 @@
 import "./styles/App.scss";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 
 function App() {
 	const [boxdStreaming, setBoxdStreaming] = useState([]);
 	const [boxdUser, setBoxdUser] = useState("");
+	const [loading, setLoading] = useState(false);
 	const fetchBoxdStreaming = async (e) => {
 		e.preventDefault();
+		setLoading(true);
 		const response = await fetch(`/api/new/${boxdUser}`);
 		console.log(response);
 		const json = await response.json();
-
+		setLoading(false);
 		if (response.ok) {
 			setBoxdStreaming(json);
 			console.log(json);
@@ -18,7 +21,7 @@ function App() {
 	};
 
 	return (
-		<div className="App">
+		<div className="App text-center">
 			<div className="text-center mt-5">
 				<h1>Watchboxd</h1>
 				<p>
@@ -37,6 +40,13 @@ function App() {
 						Submit
 					</button>
 				</form>
+			</div>
+			<div className="mt-4">
+				{loading && (
+					<Spinner animation="border" role="status">
+						<span className="visually-hidden">Loading...</span>
+					</Spinner>
+				)}
 			</div>
 			<div className="text-center mt-3">
 				{boxdStreaming !== [] &&
