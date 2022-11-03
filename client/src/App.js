@@ -2,11 +2,15 @@ import "./styles/App.scss";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import EntryForm from "./components/EntryForm";
+import MainDisplay from "./components/MainDisplay";
 
 function App() {
 	const [boxdStreaming, setBoxdStreaming] = useState([]);
 	const [boxdUser, setBoxdUser] = useState("");
 	const [loading, setLoading] = useState(false);
+
+	// set state for cleaned watchlist
 	const fetchBoxdStreaming = async (e) => {
 		e.preventDefault();
 		setLoading(true);
@@ -29,18 +33,10 @@ function App() {
 					watchlist came out on streaming this month!
 				</p>
 			</div>
-			<div className="text-center">
-				<p>Letterboxd Username:</p>
-				<form action="get">
-					<input
-						id="boxdUser"
-						onChange={(e) => setBoxdUser(e.target.value)}
-					></input>
-					<button type="submit" onClick={fetchBoxdStreaming}>
-						Submit
-					</button>
-				</form>
-			</div>
+			<EntryForm
+				setBoxdUser={setBoxdUser}
+				fetchBoxdStreaming={fetchBoxdStreaming}
+			/>
 			<div className="mt-4">
 				{loading && (
 					<Spinner animation="border" role="status">
@@ -49,10 +45,7 @@ function App() {
 				)}
 			</div>
 			<div className="text-center mt-3">
-				{boxdStreaming !== [] &&
-					boxdStreaming.map((movie) => (
-						<p>{`${movie.title} - ${movie.streaming} -${movie.date}`}</p>
-					))}
+				{boxdStreaming !== [] && <MainDisplay boxdStreaming={boxdStreaming} />}
 			</div>
 		</div>
 	);
