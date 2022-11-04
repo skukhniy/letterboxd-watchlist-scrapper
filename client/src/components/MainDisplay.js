@@ -16,6 +16,7 @@ export default function MainDisplay({ boxdStreaming }) {
 				boxdStreaming={boxdStreaming}
 				streamingName={"PRIME VIDEO"}
 			/>
+			<StreamingCard boxdStreaming={boxdStreaming} streamingName={"DISNEY+"} />
 		</div>
 	);
 }

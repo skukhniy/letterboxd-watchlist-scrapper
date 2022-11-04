@@ -7,7 +7,10 @@ export default function StreamingCard({ streamingName, boxdStreaming }) {
 	);
 	// create html elements
 	const movieHTML = filteredList.map((movie) => (
-		<p>{`${movie.title} - ${movie.date}`}</p>
+		<div>
+			<a href={movie.boxd_url}>{movie.title}</a>
+			<span>{`- ${movie.date}`}</span>
+		</div>
 	));
 	return (
 		<div className="border border-2 p-2 me-3 ms-3 mb-3 streamingCard">
