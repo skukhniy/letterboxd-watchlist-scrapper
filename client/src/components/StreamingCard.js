@@ -13,7 +13,7 @@ export default function StreamingCard({ streamingName, boxdStreaming }) {
 		</div>
 	));
 	return (
-		<div className="border border-2 p-2 me-3 ms-3 mb-3 streamingCard">
+		<div className="border border-2 p-2 pb-4 me-3 ms-3 mb-3 streamingCard">
 			<div>
 				<h1>{streamingName}</h1>
 				{movieHTML}
