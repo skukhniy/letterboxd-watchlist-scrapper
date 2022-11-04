@@ -23,6 +23,7 @@ function App() {
 			console.log(json);
 		}
 	};
+	console.log(boxdStreaming !== []);
 
 	return (
 		<div className="App text-center">
@@ -45,7 +46,9 @@ function App() {
 				)}
 			</div>
 			<div className="text-center mt-3">
-				{boxdStreaming !== [] && <MainDisplay boxdStreaming={boxdStreaming} />}
+				{boxdStreaming.length > 0 && (
+					<MainDisplay boxdStreaming={boxdStreaming} />
+				)}
 			</div>
 		</div>
 	);
