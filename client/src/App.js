@@ -13,6 +13,7 @@ function App() {
 	// set state for cleaned watchlist
 	const fetchBoxdStreaming = async (e) => {
 		e.preventDefault();
+		setBoxdStreaming([]);
 		setLoading(true);
 		const response = await fetch(`/api/new/${boxdUser}`);
 		console.log(response);
