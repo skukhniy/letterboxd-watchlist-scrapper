@@ -13,6 +13,7 @@ export default function StreamingCard({ streamingName, boxdStreaming }) {
 		</div>
 	));
 
+	// hold source for each logo image
 	const imgArray = {
 		NETFLIX:
 			"https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
@@ -29,7 +30,7 @@ export default function StreamingCard({ streamingName, boxdStreaming }) {
 			"https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg",
 	};
 	return (
-		<div className="border border-2 p-2 pb-4 me-3 ms-3 mb-3 streamingCard">
+		<div className="pb-4 me-3 ms-3 mb-3 streamingCard">
 			<div className="streamingLogo">
 				<img src={imgArray[streamingName]}></img>
 			</div>

@@ -45,10 +45,11 @@ function scrapeWatchlist(username) {
 	return dispatchRequest(1);
 }
 
+// return scrapped letterboxd List
 exports.getBoxdList = async (req, res) => {
 	try {
 		let boxdList = await scrapeWatchlist(req.params.user);
-		console.log(boxdList);
+		// console.log(boxdList);
 		res.json(boxdList);
 	} catch (err) {
 		console.log(err);
@@ -56,6 +57,7 @@ exports.getBoxdList = async (req, res) => {
 	}
 };
 
+// return monthly list of movies added to streaming
 exports.getMonthly = async (req, res) => {
 	try {
 		const MonthlyList = await Monthly.find();
@@ -65,6 +67,7 @@ exports.getMonthly = async (req, res) => {
 	}
 };
 
+//
 exports.getCleanList = async (req, res) => {
 	const cleanedList = [];
 	const boxdList = await scrapeWatchlist(req.params.user);
@@ -72,7 +75,7 @@ exports.getCleanList = async (req, res) => {
 
 	boxdList.forEach((movie) => {
 		newStreamingList.forEach((streamingObj) => {
-			console.log(streamingObj.movieTitle);
+			// console.log(streamingObj.movieTitle);
 			if (movie.title === streamingObj.movieTitle) {
 				cleanedList.push({
 					title: movie.title,
