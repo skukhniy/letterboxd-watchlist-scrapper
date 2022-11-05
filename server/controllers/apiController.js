@@ -67,7 +67,7 @@ exports.getMonthly = async (req, res) => {
 	}
 };
 
-//
+// returns filtered list of watchlist movies that were added to streaming this month
 exports.getCleanList = async (req, res) => {
 	const cleanedList = [];
 	const boxdList = await scrapeWatchlist(req.params.user);
@@ -77,16 +77,32 @@ exports.getCleanList = async (req, res) => {
 		newStreamingList.forEach((streamingObj) => {
 			// console.log(streamingObj.movieTitle);
 			if (movie.title === streamingObj.movieTitle) {
+				const movieTitleQuery = movie.title.replace(" ", "+");
+
+				let moviePoster;
+
+				// get associated movie poster from omdb
+				axios
+					.get(`http://www.omdbapi.com/?t=${movieTitleQuery}&apikey=143d6d68&`)
+					.then(
+						(response) => {
+							moviePoster = response.data.Poster;
+						},
+						(error) => {
+							console.log(error);
+						}
+					);
+
 				cleanedList.push({
 					title: movie.title,
 					streaming: streamingObj.streamingService,
 					boxd_url: movie.url,
 					date: streamingObj.date,
+					poster: moviePoster,
 				});
 			}
 		});
 	});
-
 	// const cleanedList = boxdList.filter((element) => array2.includes(element));
 
 	try {
