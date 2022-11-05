@@ -17,12 +17,22 @@ body {
 		margin-right: 10px;
 	}
 }
+.streamingContainer {
+	align-items: flex-start;
+}
 .streamingCard {
 	min-width: 25%;
 	max-width: 100%;
 
 	border: 4px solid white;
 	border-radius: 25px;
+}
+
+.movieCard {
+	img {
+		height: 150px;
+		width: auto;
+	}
 }
 
 .streamingLogo {

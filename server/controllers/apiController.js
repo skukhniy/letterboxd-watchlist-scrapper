@@ -73,19 +73,22 @@ exports.getCleanList = async (req, res) => {
 	const boxdList = await scrapeWatchlist(req.params.user);
 	const newStreamingList = await Monthly.find();
 
-	boxdList.forEach((movie) => {
-		newStreamingList.forEach((streamingObj) => {
-			// console.log(streamingObj.movieTitle);
+	// loop through each movie from the watchlist
+	for (const movie of boxdList) {
+		// loop through each new movie on streaming
+		for (const streamingObj of newStreamingList) {
+			// if the watchlist movie is in the list of new streaming movies, add it to the cleaned list
 			if (movie.title === streamingObj.movieTitle) {
+				// console.log("looping");
 				const movieTitleQuery = movie.title.replace(" ", "+");
-
-				let moviePoster;
+				let moviePoster = "";
 
 				// get associated movie poster from omdb
-				axios
+				await axios
 					.get(`http://www.omdbapi.com/?t=${movieTitleQuery}&apikey=143d6d68&`)
 					.then(
 						(response) => {
+							// console.log("poster added");
 							moviePoster = response.data.Poster;
 						},
 						(error) => {
@@ -100,12 +103,13 @@ exports.getCleanList = async (req, res) => {
 					date: streamingObj.date,
 					poster: moviePoster,
 				});
+				// console.log("list appended");
 			}
-		});
-	});
-	// const cleanedList = boxdList.filter((element) => array2.includes(element));
+		}
+	}
 
 	try {
+		console.log("res sent");
 		res.send(cleanedList);
 	} catch (err) {
 		res.status(400).json({ message: "error" });
