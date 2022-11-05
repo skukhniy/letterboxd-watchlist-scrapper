@@ -5,11 +5,21 @@ body {
 }
 
 .logoTitle {
-	font-family: TiemposHeadlineWeb-Bold, Georgia, serif;
-	font-weight: 600;
+	font-family: Georgia, serif;
+	h2 {
+		font-weight: bold !important;
+	}
+
+	img {
+		width: 65px;
+		height: 25px;
+		margin-bottom: 5px;
+		margin-right: 10px;
+	}
 }
 .streamingCard {
-	width: 25%;
+	min-width: 25%;
+	max-width: 100%;
 }
 
 .streamingLogo {

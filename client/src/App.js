@@ -28,8 +28,11 @@ function App() {
 
 	return (
 		<div className="App text-center">
-			<div className="text-center mt-5">
-				<h1 className="logoTitle">Watchboxd</h1>
+			<div className="text-center mt-3">
+				<div className="logoTitle d-flex justify-content-center align-items-center mb-2">
+					<img src="https://clipground.com/images/letterboxd-logo.png"></img>
+					<h2>Watchboxd</h2>
+				</div>
 				<p>
 					Enter your letterboxd username below to see what movies on your
 					watchlist came out on streaming this month!

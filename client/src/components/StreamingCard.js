@@ -7,7 +7,7 @@ export default function StreamingCard({ streamingName, boxdStreaming }) {
 	);
 	// create html elements
 	const movieHTML = filteredList.map((movie) => (
-		<div>
+		<div className="d-flex justify-content-center align-items-center">
 			<a href={movie.boxd_url}>{movie.title}</a>
 			<span>{`- ${movie.date}`}</span>
 		</div>
@@ -33,7 +33,15 @@ export default function StreamingCard({ streamingName, boxdStreaming }) {
 			<div className="streamingLogo">
 				<img src={imgArray[streamingName]}></img>
 			</div>
-			{movieHTML}
+			<div className="">
+				{filteredList.length > 0 ? (
+					movieHTML
+				) : (
+					<div>
+						<p>N/A</p>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 }

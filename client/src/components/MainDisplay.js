@@ -3,7 +3,7 @@ import StreamingCard from "./StreamingCard";
 
 export default function MainDisplay({ boxdStreaming }) {
 	return (
-		<div className="d-flex flex-wrap justify-content-center me-3 ms-3">
+		<div className="d-sm-flex flex-wrap justify-content-center me-3 ms-3">
 			<StreamingCard boxdStreaming={boxdStreaming} streamingName={"NETFLIX"} />
 			<StreamingCard boxdStreaming={boxdStreaming} streamingName={"HULU"} />
 			<StreamingCard boxdStreaming={boxdStreaming} streamingName={"HBO MAX"} />
