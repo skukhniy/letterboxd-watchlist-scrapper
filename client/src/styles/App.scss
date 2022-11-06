@@ -2,12 +2,13 @@ html,
 body {
 	background-color: #14181c !important;
 	color: white !important;
+	font-family: Georgia, serif !important;
 }
 
 .logoTitle {
 	font-family: Georgia, serif;
-	h2 {
-		font-weight: bold !important;
+	h1 {
+		font-weight: bolder !important;
 	}
 
 	img {
@@ -18,14 +19,28 @@ body {
 	}
 }
 .streamingContainer {
-	align-items: flex-start;
-}
-.streamingCard {
+	// align-items: flex-start;
+	margin-left: 0;
 	min-width: 25%;
-	max-width: 100%;
+	max-width: 30%;
+}
+
+@media (max-width: 985px) {
+	.streamingContainer {
+		// align-items: flex-start;
+		margin-left: 0;
+		max-width: 90%;
+	}
+}
+
+.streamingCard {
+	width: 100%;
 
 	border: 4px solid white;
 	border-radius: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
 }
 
 .movieCard {

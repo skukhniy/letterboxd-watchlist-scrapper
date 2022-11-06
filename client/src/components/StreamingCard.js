@@ -9,7 +9,7 @@ export default function StreamingCard({ streamingName, boxdStreaming }) {
 	const movieHTML = filteredList.map((movie) => (
 		<div className="d-flex flex-column justify-content-center align-items-center movieCard mb-3">
 			<img src={movie.poster}></img>
-			<div>
+			<div className="mt-2">
 				<a href={movie.boxd_url}>{movie.title}</a>
 				<span>{`- ${movie.date}`}</span>
 			</div>
@@ -33,7 +33,7 @@ export default function StreamingCard({ streamingName, boxdStreaming }) {
 			"https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg",
 	};
 	return (
-		<div className="pb-4 me-3 ms-3 mb-3 streamingCard">
+		<div className="pb-4 mb-3 streamingCard">
 			<div className="streamingLogo">
 				<img src={imgArray[streamingName]}></img>
 			</div>
