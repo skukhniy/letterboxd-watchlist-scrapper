@@ -27,7 +27,7 @@ function scrapeWatchlist(username) {
 					const title = $(el).find("img").attr("alt");
 					// grab the movie link from the target link data attribute
 					const movieRoute = $(el).find("div").data("target-link");
-					const url = baseURL + movieRoute + "/watch/";
+					const url = baseURL + movieRoute;
 					// push title and movie url to the movies array
 					movies.push({ title: title, url: url });
 				});
