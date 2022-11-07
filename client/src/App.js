@@ -40,7 +40,7 @@ function App() {
 					<img src="https://clipground.com/images/letterboxd-logo.png"></img>
 					<h1>Watchboxd</h1>
 				</div>
-				<p>
+				<p className="me-5 ms-5">
 					Enter your letterboxd username below to see what movies on your
 					watchlist came out on streaming this month!
 				</p>
