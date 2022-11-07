@@ -9,17 +9,24 @@ function App() {
 	const [boxdStreaming, setBoxdStreaming] = useState([]);
 	const [boxdUser, setBoxdUser] = useState("");
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
 
 	// set state for cleaned watchlist
 	const fetchBoxdStreaming = async (e) => {
 		e.preventDefault();
 		setBoxdStreaming([]);
+		setError("");
 		setLoading(true);
 		const response = await fetch(`/api/new/${boxdUser}`);
 		console.log(response);
 		const json = await response.json();
 		setLoading(false);
 		if (response.ok) {
+			if (json.length === 0) {
+				setError(
+					"No movies from your watchlist have been added to streaming this month :("
+				);
+			}
 			setBoxdStreaming(json);
 			console.log(json);
 		}
@@ -50,6 +57,7 @@ function App() {
 				)}
 			</div>
 			<div className="d-flex justify-content-center">
+				{error != "" && <p>{error}</p>}
 				{boxdStreaming.length > 0 && (
 					<MainDisplay boxdStreaming={boxdStreaming} />
 				)}
