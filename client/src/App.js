@@ -26,8 +26,13 @@ function App() {
 				setError(
 					"No movies from your watchlist have been added to streaming this month :("
 				);
+				setBoxdStreaming(json);
+			} else if (json[0] === "User not Found") {
+				setError("This user does not exist.");
+			} else {
+				setBoxdStreaming(json);
 			}
-			setBoxdStreaming(json);
+
 			console.log(json);
 		}
 	};
@@ -57,7 +62,7 @@ function App() {
 				)}
 			</div>
 			<div className="d-flex justify-content-center">
-				{error != "" && <p>{error}</p>}
+				{error != "" && <p className="me-5 ms-5">{error}</p>}
 				{boxdStreaming.length > 0 && (
 					<MainDisplay boxdStreaming={boxdStreaming} />
 				)}

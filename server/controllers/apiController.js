@@ -5,6 +5,7 @@ const { parse } = require("csv-parse");
 const { stringify } = require("csv-stringify");
 const { title } = require("process");
 const Monthly = require("../models/NewStreaming");
+const e = require("express");
 
 // scrape and return array of movies on a users watchlist
 function scrapeWatchlist(username) {
@@ -38,7 +39,10 @@ function scrapeWatchlist(username) {
 					console.log(`There are ${movies.length} in this watchlist`);
 				}
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				movies.push("User does not exist");
+				console.log(err);
+			});
 		return movies;
 	};
 	// recurrsion func, returns full movie list
@@ -110,8 +114,15 @@ exports.getCleanList = async (req, res) => {
 
 	try {
 		console.log("res sent");
-		res.send(cleanedList);
+		console.log(boxdList);
+		console.log(boxdList[0] === "User does not exist");
+		if (boxdList[0] === "User does not exist") {
+			res.send(["User not Found"]);
+		} else {
+			res.send(cleanedList);
+		}
 	} catch (err) {
+		console.log("error");
 		res.status(400).json({ message: "error" });
 	}
 };
