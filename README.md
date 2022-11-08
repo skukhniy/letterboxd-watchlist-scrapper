@@ -1,4 +1,4 @@
-# RESTful API Blog
+# Watchboxd
 ![watchboxd pic](https://www.stanislavkukhniy.com/static/media/watchboxd.a5e5882b.png)
 
 ### [Live Demo](http://watchboxd.stanislavkukhniy.com)
