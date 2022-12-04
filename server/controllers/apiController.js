@@ -114,11 +114,11 @@ exports.getCleanList = async (req, res) => {
 
 	try {
 		console.log("res sent");
-		console.log(boxdList);
-		console.log(boxdList[0] === "User does not exist");
+    // check if user exists 
 		if (boxdList[0] === "User does not exist") {
 			res.send(["User not Found"]);
 		} else {
+      // if user exists send normal list
 			res.send(cleanedList);
 		}
 	} catch (err) {

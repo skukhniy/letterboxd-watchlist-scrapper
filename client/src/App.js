@@ -28,7 +28,7 @@ function App() {
 				);
 				setBoxdStreaming(json);
 			} else if (json[0] === "User not Found") {
-				setError("This user does not exist.");
+				setError("This Letterboxd user does not exist.");
 			} else {
 				setBoxdStreaming(json);
 			}
