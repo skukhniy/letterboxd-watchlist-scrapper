@@ -54,33 +54,34 @@ exports.uploadMonthly = async (req, res) => {
             // loop through streaming Strings to find which one is in this particular div
 
             streamingStrings.forEach((service) => {
-              if (selector.find(service)) {
+              if (selector.html().includes(service)) {
                 streamingService = service;
               }
             });
-            // const streamService = selector.find('strong').html();
+
+            console.log(`streamingString = ${streamingService}`);
+            console.log(`pTag elem = ${selector}`);
 
             // find all movie titles and save as Array
 
-            // const movies = selector.find('em').toArray();
-
-            const selectorString = selector.html();
-            const movies = selectorString.split('<br>');
+            let selectorString = selector.html();
+            const movies = selectorString
+              .split('<br>')
+              .filter((s) => s !== streamingService);
 
             // console.log('selector');
             // console.log(selector.html());
-            console.log(movies);
+            // console.log(movies);
 
             // loop through array of movies
             movies.forEach((movie) => {
-              const movieSelector = $(movie);
-              let movieTitle = movieSelector.html();
-              console.log(movieTitle);
-              movieTitle = movieTitle.replace('<br>', '');
-              movieTitle = movieTitle.replace('&amp;', '&');
+              // clean movie title
+              movie = movie.replace('&amp;', '&');
+              movie = movie.replace(/\s--\sNETFLIX\s.*/g, '');
+              console.log(movie);
               // create new movie object, append to main array
               const newObj = new Monthly({
-                movieTitle: movieTitle,
+                movieTitle: movie,
                 streamingService: streamingService,
                 date: date,
               });
