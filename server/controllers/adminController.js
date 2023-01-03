@@ -22,15 +22,15 @@ exports.uploadMonthly = async (req, res) => {
   // 	"https://comicbook.com/movies/news/streaming-october-2022-new-movies-tv-netflix-disney-plus-hbo-max-hulu-peacock-paramount/#1";
   // const url =
   // 	"https://comicbook.com/movies/news/streaming-new-september-2022-netflix-disney-plus-hbo-max-paramount-peacock/#4";
-  const streamingStrings = [
-    'NETFLIX',
-    'HULU',
-    'HBO MAX',
-    'PARAMOUNT+',
-    'PEACOCK',
-    'PRIME VIDEO',
-    'DISNEY+',
-  ];
+  // const streamingStrings = [
+  //   'NETFLIX',
+  //   'HULU',
+  //   'HBO MAX',
+  //   'PARAMOUNT+',
+  //   'PEACOCK',
+  //   'PRIME VIDEO',
+  //   'DISNEY+',
+  // ];
   await axios(url)
     .then((res) => {
       // load html page into cheerio
@@ -41,25 +41,21 @@ exports.uploadMonthly = async (req, res) => {
         const div = $(el).html();
         // console.log(`div = ${div}`);
         // filter again by divs that include the <strong> tag
-        // if (div.includes('<strong>')) {
-        if (streamingStrings.some((s) => div.includes(s))) {
+        let h2Tags = $(el).find('h2').toArray();
+
+        if (h2Tags.length > 2) {
+          // if (streamingStrings.some((s) => div.includes(s))) {
           // console.log(`Streaming div located!`);
-          const date = $(el).find('h2').html(); // save the date for this div
+          const date = $(h2Tags.shift()).html(); // save the date for this div
           const pTags = $(el).find('p').toArray(); // selector of <p> tags in this loop
 
           // loop through each paragraph element
-          pTags.forEach((elem) => {
-            const selector = $(elem);
+          for (i = 0; i < pTags.length; i++) {
+            const selector = $(pTags[i]);
             // console.log(`pTag elem = ${selector}`);
             // save name of streaming service in this paragraph tag
-            let streamingService = 'null';
-            // loop through streaming Strings to find which one is in this particular div
-
-            streamingStrings.forEach((service) => {
-              if (selector.html().includes(service)) {
-                streamingService = service;
-              }
-            });
+            let streamingService = $(h2Tags[i]).html().toUpperCase();
+            streamingService = streamingService.replace('<BR>', '');
 
             console.log(`streamingString = ${streamingService}`);
             console.log(`pTag elem = ${selector}`);
@@ -72,15 +68,24 @@ exports.uploadMonthly = async (req, res) => {
               .filter((s) => s !== streamingService);
 
             // console.log('selector');
-            // console.log(selector.html());
-            // console.log(movies);
+            if (streamingService === 'HULU') {
+              console.log(movies);
+            }
 
             // loop through array of movies
             movies.forEach((movie) => {
               // clean movie title
               movie = movie.replace('&amp;', '&');
               movie = movie.replace(/\s--\sNETFLIX\s.*/g, '');
-              console.log(movie);
+              if (streamingService === 'HBO MAX') {
+                movie = movie.replace(' (HBO)', '');
+              }
+              if (streamingService === 'HULU') {
+                movie = movie.replace(/\s\(\d{4}\)/gm, '');
+              }
+              movie = movie.replace(/,\s\d{4}/gm, '');
+              movie = movie.replace(' (Freevee)', '');
+              // console.log(movie);
               // create new movie object, append to main array
               const newObj = new Monthly({
                 movieTitle: movie,
@@ -90,7 +95,7 @@ exports.uploadMonthly = async (req, res) => {
               // console.log(newObj);
               newObj.save();
             });
-          });
+          }
         }
       });
     })
