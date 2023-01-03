@@ -14,6 +14,11 @@ exports.uploadMonthly = async (req, res) => {
   console.log('removed DB');
   const url =
     'https://comicbook.com/movies/news/streaming-new-movies-tv-january-2023-netflix-disney-plus-hbo-max/#1';
+<<<<<<< HEAD
+=======
+  const url =
+    'https://comicbook.com/movies/news/streaming-new-movies-tv-december-2022-netflix-disney-plus-hbo-max/';
+>>>>>>> strongBranch
   // const url =
   //   'https://comicbook.com/movies/news/streaming-new-movies-tv-december-2022-netflix-disney-plus-hbo-max/';
   // const url =
