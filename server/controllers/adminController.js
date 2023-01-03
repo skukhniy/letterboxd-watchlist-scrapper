@@ -13,7 +13,9 @@ exports.uploadMonthly = async (req, res) => {
   await Monthly.remove({});
   console.log('removed DB');
   const url =
-    'https://comicbook.com/movies/news/streaming-new-movies-tv-december-2022-netflix-disney-plus-hbo-max/';
+    'https://comicbook.com/movies/news/streaming-new-movies-tv-january-2023-netflix-disney-plus-hbo-max/#1';
+  // const url =
+  //   'https://comicbook.com/movies/news/streaming-new-movies-tv-december-2022-netflix-disney-plus-hbo-max/';
   // const url =
   //   'https://comicbook.com/movies/news/november-new-streaming-movies-tv-netflix-disney-plus-hbo-max/';
   // const url =
