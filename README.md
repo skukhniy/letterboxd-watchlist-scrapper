@@ -28,6 +28,12 @@ This MERN-stack app scrapes the HTML of a users Letterboxd movie watchlist, and 
  * [OMDB API](https://www.omdbapi.com/)
  
  
+## Praise
+Users have said:
+
+![image](https://user-images.githubusercontent.com/59482034/210404391-17e344cf-e8b2-459d-8de1-f88e091493af.png)
+ 
+
 ## Getting started
 
 After cloning the repo, run:
@@ -49,8 +55,5 @@ npm start
 
 The client is now running at `localhost:3000`.
 
-## Praise
-Users have said:
 
-![image](https://user-images.githubusercontent.com/59482034/210404391-17e344cf-e8b2-459d-8de1-f88e091493af.png)
 
