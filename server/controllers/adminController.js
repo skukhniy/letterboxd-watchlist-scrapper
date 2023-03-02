@@ -13,32 +13,7 @@ exports.uploadMonthly = async (req, res) => {
   await Monthly.remove({});
   console.log('removed DB');
   const url = `https://comicbook.com/movies/news/${req.params.id}`;
-  // February
-  // const url = "https://comicbook.com/movies/news/streaming-new-movies-tv-february-2023-netflix-disney-plus-hbo-max/#1"
-  // January
-  // const url =
-  //   'https://comicbook.com/movies/news/streaming-new-movies-tv-january-2023-netflix-disney-plus-hbo-max/#1';
-  // December
-  // const url =
-  //   'https://comicbook.com/movies/news/streaming-new-movies-tv-december-2022-netflix-disney-plus-hbo-max/';
-  // November
-  // const url =
-  //   'https://comicbook.com/movies/news/november-new-streaming-movies-tv-netflix-disney-plus-hbo-max/';
-  // October
-  // const url =
-  // 	"https://comicbook.com/movies/news/streaming-october-2022-new-movies-tv-netflix-disney-plus-hbo-max-hulu-peacock-paramount/#1";
-  // September
-  // const url =
-  // 	"https://comicbook.com/movies/news/streaming-new-september-2022-netflix-disney-plus-hbo-max-paramount-peacock/#4";
-  // const streamingStrings = [
-  //   'NETFLIX',
-  //   'HULU',
-  //   'HBO MAX',
-  //   'PARAMOUNT+',
-  //   'PEACOCK',
-  //   'PRIME VIDEO',
-  //   'DISNEY+',
-  // ];
+
   await axios(url)
     .then((res) => {
       // load html page into cheerio
@@ -75,7 +50,6 @@ exports.uploadMonthly = async (req, res) => {
               .split('<br>')
               .filter((s) => s !== streamingService);
 
-            // console.log('selector');
             if (streamingService === 'HULU') {
               console.log(movies);
             }
@@ -91,17 +65,19 @@ exports.uploadMonthly = async (req, res) => {
               if (streamingService === 'HULU') {
                 movie = movie.replace(/\s\(\d{4}\)/gm, '');
               }
+              if (streamingService === 'PRIME VIDEO') {
+                movie = movie.replace(/ \(\d{4}\)/gm, '');
+              }
               movie = movie.replace(/,\s\d{4}/gm, '');
               movie = movie.replace(' (Freevee)', '');
               movie = movie.replace('\t', '');
-              // console.log(movie);
+
               // create new movie object, append to main array
               const newObj = new Monthly({
                 movieTitle: movie.trim(),
                 streamingService: streamingService,
                 date: date,
               });
-              // console.log(newObj);
               newObj.save();
             });
           }
