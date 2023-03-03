@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import EntryForm from '../components/EntryForm';
 import MainDisplay from '../components/MainDisplay';
@@ -36,6 +36,7 @@ export default function MainPage() {
     }
   };
   console.log(boxdStreaming !== []);
+
   return (
     <div className="App text-center">
       <div className="text-center mt-3">
@@ -47,7 +48,11 @@ export default function MainPage() {
           Enter your letterboxd username below to see what movies on your
           watchlist came out on streaming this month!
         </p>
-        <p>Or view the full list of movies that were added to streaming.</p>
+        <span>Or view the </span>{' '}
+        <Link to="/all-movies" className="allMoviesLink">
+          full list
+        </Link>{' '}
+        <span> of movies that were added to streaming. </span>
       </div>
       <EntryForm
         setBoxdUser={setBoxdUser}
