@@ -1,24 +1,50 @@
 import React from 'react';
 
-export default function StreamingCard({ streamingName, boxdStreaming }) {
+export default function StreamingCard({
+  streamingName,
+  movieList,
+  forWatchlist,
+}) {
   // filter movie array for movies from the same streaming service
-  const filteredList = boxdStreaming.filter(
-    (movie) => movie.streaming === streamingName
-  );
-  // create html elements
-  const movieHTML = filteredList.map((movie) => (
-    <div className="d-flex flex-column justify-content-center align-items-center movieCard mb-3">
-      <a href={movie.boxd_url} target="_blank">
-        <div className="hoverPointer">
-          <img className="" src={movie.poster}></img>
-          <div className="mt-2">
-            <span>{movie.title}</span>
-            <span>{` - ${movie.date}`}</span>
+  let filteredList = [];
+  let movieHTML = [];
+  if (forWatchlist) {
+    filteredList = movieList.filter(
+      (movie) => movie.streaming === streamingName
+    );
+    movieHTML = filteredList.map((movie) => (
+      <div className="d-flex flex-column justify-content-center align-items-center movieCard mb-3">
+        <a href={movie.boxd_url} target="_blank">
+          <div className="hoverPointer">
+            <img className="" src={movie.poster}></img>
+            <div className="mt-2">
+              <span>{movie.title}</span>
+              <span>{` - ${movie.date}`}</span>
+            </div>
           </div>
-        </div>
-      </a>
-    </div>
-  ));
+        </a>
+      </div>
+    ));
+  } else {
+    filteredList = movieList.filter(
+      (movies) => movies.streamingService === streamingName
+    );
+    movieHTML = filteredList.map((movie) => (
+      <div className="d-flex justify-content-center align-items-center movieCard mb-3">
+        <a href={movie.movieTitle} target="_blank">
+          <div className="hoverPointer">
+            <img className="" src={movie.poster}></img>
+            <div className="mt-2">
+              <span>{movie.movieTitle}</span>
+              <span>{` - ${movie.date}`}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    ));
+  }
+  console.log(filteredList);
+  // create html elements
 
   // hold source for each logo image
   const imgArray = {

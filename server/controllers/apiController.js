@@ -86,10 +86,6 @@ exports.getCleanList = async (req, res) => {
         // console.log("looping");
         const movieTitleQuery = movie.title.replace(' ', '+');
         let moviePoster = '';
-        if (movie.title === 'Irrational Man') {
-          console.log(movie);
-          console.log(streamingObj);
-        }
 
         // get associated movie poster from omdb
         await axios

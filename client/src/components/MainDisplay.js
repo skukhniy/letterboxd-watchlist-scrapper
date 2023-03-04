@@ -1,22 +1,44 @@
-import React from "react";
-import StreamingCard from "./StreamingCard";
+import React from 'react';
+import StreamingCard from './StreamingCard';
 
 export default function MainDisplay({ boxdStreaming }) {
-	return (
-		<div className="d-sm-flex flex-wrap justify-content-center me-3 ms-3 streamingContainer">
-			<StreamingCard boxdStreaming={boxdStreaming} streamingName={"NETFLIX"} />
-			<StreamingCard boxdStreaming={boxdStreaming} streamingName={"HULU"} />
-			<StreamingCard boxdStreaming={boxdStreaming} streamingName={"HBO MAX"} />
-			<StreamingCard
-				boxdStreaming={boxdStreaming}
-				streamingName={"PARAMOUNT+"}
-			/>
-			<StreamingCard boxdStreaming={boxdStreaming} streamingName={"PEACOCK"} />
-			<StreamingCard
-				boxdStreaming={boxdStreaming}
-				streamingName={"PRIME VIDEO"}
-			/>
-			<StreamingCard boxdStreaming={boxdStreaming} streamingName={"DISNEY+"} />
-		</div>
-	);
+  return (
+    <div className="d-sm-flex flex-wrap justify-content-center me-3 ms-3 streamingContainer">
+      <StreamingCard
+        movieList={boxdStreaming}
+        streamingName={'NETFLIX'}
+        forWatchlist={true}
+      />
+      <StreamingCard
+        movieList={boxdStreaming}
+        streamingName={'HULU'}
+        forWatchlist={true}
+      />
+      <StreamingCard
+        movieList={boxdStreaming}
+        streamingName={'HBO MAX'}
+        forWatchlist={true}
+      />
+      <StreamingCard
+        movieList={boxdStreaming}
+        streamingName={'PARAMOUNT+'}
+        forWatchlist={true}
+      />
+      <StreamingCard
+        movieList={boxdStreaming}
+        streamingName={'PEACOCK'}
+        forWatchlist={true}
+      />
+      <StreamingCard
+        movieList={boxdStreaming}
+        streamingName={'PRIME VIDEO'}
+        forWatchlist={true}
+      />
+      <StreamingCard
+        movieList={boxdStreaming}
+        streamingName={'DISNEY+'}
+        forWatchlist={true}
+      />
+    </div>
+  );
 }
