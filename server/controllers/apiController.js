@@ -64,7 +64,7 @@ exports.getBoxdList = async (req, res) => {
 // get associated movie poster from omdb
 const getMoviePosterURL = async (movieTitle) => {
   const movieTitleQuery = movieTitle.replace(' ', '+');
-  let moviePosterURL = '';
+  const moviePosterURL = '';
   await axios
     .get(`http://www.omdbapi.com/?t=${movieTitleQuery}&apikey=143d6d68&`)
     .then(

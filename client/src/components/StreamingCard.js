@@ -30,7 +30,7 @@ export default function StreamingCard({
       (movies) => movies.streamingService === streamingName
     );
     movieHTML = filteredList.map((movie) => (
-      <div className="d-flex justify-content-center align-items-center movieCard mb-3">
+      <div className="d-flex flex-column justify-content-center align-items-center movieCard mb-3">
         <a href={movie.movieTitle} target="_blank">
           <div className="hoverPointer">
             <img className="" src={movie.poster}></img>
