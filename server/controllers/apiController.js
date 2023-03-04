@@ -61,6 +61,24 @@ exports.getBoxdList = async (req, res) => {
   }
 };
 
+// get associated movie poster from omdb
+const getMoviePosterURL = async (movieTitle) => {
+  const movieTitleQuery = movieTitle.replace(' ', '+');
+  let moviePosterURL = '';
+  await axios
+    .get(`http://www.omdbapi.com/?t=${movieTitleQuery}&apikey=143d6d68&`)
+    .then(
+      (response) => {
+        // console.log("poster added");
+        moviePosterURL = response.data.Poster;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  return moviePosterURL;
+};
+
 // return monthly list of movies added to streaming
 exports.getMonthly = async (req, res) => {
   try {
@@ -84,21 +102,8 @@ exports.getCleanList = async (req, res) => {
       // if the watchlist movie is in the list of new streaming movies, add it to the cleaned list
       if (movie.title === streamingObj.movieTitle) {
         // console.log("looping");
-        const movieTitleQuery = movie.title.replace(' ', '+');
-        let moviePoster = '';
-
-        // get associated movie poster from omdb
-        await axios
-          .get(`http://www.omdbapi.com/?t=${movieTitleQuery}&apikey=143d6d68&`)
-          .then(
-            (response) => {
-              // console.log("poster added");
-              moviePoster = response.data.Poster;
-            },
-            (error) => {
-              console.log(error);
-            }
-          );
+        const moviePoster = await getMoviePosterURL(movie.title);
+        console.log(moviePoster);
 
         cleanedList.push({
           title: movie.title,
