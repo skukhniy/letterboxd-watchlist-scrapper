@@ -17,6 +17,7 @@ const getMoviePosterURL = async (movieTitle) => {
         moviePosterURL = response.data.Poster;
       },
       (error) => {
+        moviePosterURL = '';
         console.log(error);
       }
     );
@@ -83,7 +84,7 @@ exports.uploadMonthly = async (req, res) => {
             // loop through array of movies
             movies.forEach(async (movie) => {
               // clean movie title
-              movieTitle = cleanMovieTitle(movie, streamingService);
+              const movieTitle = cleanMovieTitle(movie, streamingService);
 
               const moviePosterURL = await getMoviePosterURL(movieTitle.trim());
 

@@ -27,16 +27,22 @@ export default function StreamingCard({
     ));
   } else {
     filteredList = movieList.filter(
-      (movies) => movies.streamingService === streamingName
+      (movies) =>
+        movies.streamingService === streamingName &&
+        movies.poster !== undefined &&
+        movies.poster !== ''
     );
     movieHTML = filteredList.map((movie) => (
-      <div className="d-flex flex-column justify-content-center align-items-center movieCard mb-3">
+      <div
+        style={{ width: '200px' }}
+        className="d-flex flex-column justify-content-center align-items-center movieCard mb-3 text-center"
+      >
         <a href={movie.movieTitle} target="_blank">
           <div className="hoverPointer">
             <img className="" src={movie.poster}></img>
             <div className="mt-2">
               <span>{movie.movieTitle}</span>
-              <span>{` - ${movie.date}`}</span>
+              <p>{`${movie.date}`}</p>
             </div>
           </div>
         </a>
@@ -67,7 +73,7 @@ export default function StreamingCard({
       <div className="streamingLogo">
         <img src={imgArray[streamingName]}></img>
       </div>
-      <div className="">
+      <div className={forWatchlist === false ? 'allMoviesParent' : ''}>
         {filteredList.length > 0 ? (
           movieHTML
         ) : (

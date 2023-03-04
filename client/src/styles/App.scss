@@ -43,6 +43,11 @@ body {
   display: block;
 }
 
+.allMoviesParent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .movieCard {
   img {
     height: 150px;
@@ -58,6 +63,9 @@ body {
 }
 
 .streamingLogo {
+  display: flex;
+  align-self: center;
+  justify-content: center;
   img {
     width: 50%;
     height: 50px;
