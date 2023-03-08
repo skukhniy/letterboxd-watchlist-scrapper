@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import DateCard from '../components/DateCard';
+import Header from '../components/Header';
 import StreamingCard from '../components/StreamingCard';
 
 export default function AllMovies() {
@@ -38,11 +39,8 @@ export default function AllMovies() {
 
   return (
     <div>
-      <div className="logoTitle d-flex justify-content-center align-items-center mt-3 mb-5">
-        <img src="https://clipground.com/images/letterboxd-logo.png"></img>
-        <h1>Watchboxd</h1>
-      </div>
-      <div className="allMoviesContainer">{moviesByDate}</div>
+      <Header />
+      <div className="allMoviesContainer mt-3">{moviesByDate}</div>
     </div>
   );
 }

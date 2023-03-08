@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Spinner from 'react-bootstrap/Spinner';
 import EntryForm from '../components/EntryForm';
 import MainDisplay from '../components/MainDisplay';
+import Header from '../components/Header';
 
 export default function MainPage() {
   const [boxdStreaming, setBoxdStreaming] = useState([]);
@@ -40,10 +41,7 @@ export default function MainPage() {
   return (
     <div className="App text-center">
       <div className="text-center mt-3">
-        <div className="logoTitle d-flex justify-content-center align-items-center mb-3">
-          <img src="https://clipground.com/images/letterboxd-logo.png"></img>
-          <h1>Watchboxd</h1>
-        </div>
+        <Header />
         <p className="me-5 ms-5">
           Enter your letterboxd username below to see what movies on your
           watchlist came out on streaming this month!

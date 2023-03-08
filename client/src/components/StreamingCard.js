@@ -42,7 +42,7 @@ export default function StreamingCard({
             <img className="" src={movie.poster}></img>
             <div className="mt-2">
               <span>{movie.movieTitle}</span>
-              <p>{`${movie.date}`}</p>
+              <p className="italic">{`${movie.date}`}</p>
             </div>
           </div>
         </a>
