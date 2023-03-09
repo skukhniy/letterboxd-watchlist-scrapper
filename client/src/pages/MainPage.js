@@ -14,26 +14,28 @@ export default function MainPage() {
   // set state for cleaned watchlist
   const fetchBoxdStreaming = async (e) => {
     e.preventDefault();
-    setBoxdStreaming([]);
-    setError('');
-    setLoading(true);
-    const response = await fetch(`/api/new/${boxdUser}`);
-    console.log(response);
-    const json = await response.json();
-    setLoading(false);
-    if (response.ok) {
-      if (json.length === 0) {
-        setError(
-          'No movies from your watchlist have been added to streaming this month :('
-        );
-        setBoxdStreaming(json);
-      } else if (json[0] === 'User not Found') {
-        setError('This Letterboxd user does not exist.');
-      } else {
-        setBoxdStreaming(json);
-      }
+    if (boxdUser !== '') {
+      setBoxdStreaming([]);
+      setError('');
+      setLoading(true);
+      const response = await fetch(`/api/new/${boxdUser}`);
+      console.log(response);
+      const json = await response.json();
+      setLoading(false);
+      if (response.ok) {
+        if (json.length === 0) {
+          setError(
+            'No movies from your watchlist have been added to streaming this month :('
+          );
+          setBoxdStreaming(json);
+        } else if (json[0] === 'User not Found') {
+          setError('This Letterboxd user does not exist.');
+        } else {
+          setBoxdStreaming(json);
+        }
 
-      console.log(json);
+        console.log(json);
+      }
     }
   };
   console.log(boxdStreaming !== []);

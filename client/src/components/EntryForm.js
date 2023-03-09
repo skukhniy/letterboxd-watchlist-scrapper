@@ -3,13 +3,18 @@ import React from 'react';
 export default function EntryForm({ setBoxdUser, fetchBoxdStreaming }) {
   return (
     <div className="text-center">
-      <p className="mt-4">Letterboxd Username:</p>
-      <form action="get">
+      <form action="get" className="mt-4">
         <input
+          className=" form-control-md"
           id="boxdUser"
           onChange={(e) => setBoxdUser(e.target.value)}
+          placeholder="Letterboxd Username"
         ></input>
-        <button type="submit" onClick={fetchBoxdStreaming}>
+        <button
+          type="submit"
+          onClick={fetchBoxdStreaming}
+          className="mx-2 mb-1 submitButton"
+        >
           Submit
         </button>
       </form>
