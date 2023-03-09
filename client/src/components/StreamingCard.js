@@ -42,7 +42,7 @@ export default function StreamingCard({
             <img className="" src={movie.poster}></img>
             <div className="mt-2">
               <span>{movie.movieTitle}</span>
-              <p className="italic">{`${movie.date}`}</p>
+              <p className="text-white-50">{`${movie.date}`}</p>
             </div>
           </div>
         </a>
@@ -69,7 +69,7 @@ export default function StreamingCard({
       'https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg',
   };
   return (
-    <div className="pb-4 mb-3 streamingCard">
+    <div className="pb-4 mb-3 streamingCard" id={streamingName}>
       <div className="streamingLogo">
         <img src={imgArray[streamingName]}></img>
       </div>

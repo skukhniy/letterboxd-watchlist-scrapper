@@ -93,3 +93,16 @@ a {
   color: lightgreen !important;
   text-decoration: underline !important;
 }
+
+.quickLink {
+  width: 100px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: block;
+  img {
+    width: 80px;
+    height: 20px;
+    display: block;
+  }
+}
