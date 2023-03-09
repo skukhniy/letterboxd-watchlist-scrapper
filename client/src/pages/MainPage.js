@@ -41,7 +41,6 @@ export default function MainPage() {
   return (
     <div className="App text-center">
       <div className="text-center mt-3">
-        <Header />
         <p className="me-5 ms-5">
           Enter your letterboxd username below to see what movies on your
           watchlist came out on streaming this month!

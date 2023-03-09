@@ -62,8 +62,7 @@ export default function AllMovies() {
 
   return (
     <div>
-      <Header />
-      <div className="d-flex justify-content-between w-75 m-auto">
+      <div className=" mt-5 mb-4 d-flex justify-content-between w-75 m-auto">
         {quickLinks}
       </div>
       <div className="allMoviesContainer mt-3">{moviesByDate}</div>
