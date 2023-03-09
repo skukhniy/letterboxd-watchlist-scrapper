@@ -69,7 +69,7 @@ export default function StreamingCard({
       'https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg',
   };
   return (
-    <div className="pb-4 mb-3 streamingCard" id={streamingName}>
+    <div className={`pb-4 mb-3 streamingCard`} id={streamingName}>
       <div className="streamingLogo">
         <img src={imgArray[streamingName]}></img>
       </div>

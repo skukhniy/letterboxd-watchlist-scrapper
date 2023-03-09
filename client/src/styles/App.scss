@@ -31,6 +31,58 @@ body {
     margin-left: 0;
     max-width: 90%;
   }
+  .quickLinks {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90% !important;
+  }
+  .quickLink {
+    margin-bottom: 20px;
+  }
+  .streamingCardAllMovies {
+  }
+  .allMoviesContainer {
+    width: 100%;
+    margin-left: 0;
+  }
+  .allMoviesContainer {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .movieCard {
+    width: 120px !important;
+    img {
+      height: 100px !important;
+      width: 67px !important;
+      cursor: pointer;
+    }
+    span {
+      cursor: pointer;
+    }
+  }
+}
+
+.allMoviesContainer {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.quickLinks {
+  width: 75%;
+  justify-content: space-around;
+}
+
+.quickLink {
+  width: 100px;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: block;
+  img {
+    width: 80px;
+    height: 20px;
+    display: block;
+  }
 }
 
 .streamingCard {
@@ -43,11 +95,6 @@ body {
   display: block;
 }
 
-.allMoviesContainer {
-  margin-left: 10%;
-  margin-right: 10%;
-}
-
 .allMoviesParent {
   display: flex;
   flex-wrap: wrap;
@@ -55,6 +102,7 @@ body {
 }
 
 .movieCard {
+  width: 200px;
   img {
     height: 150px;
     width: auto;
@@ -92,19 +140,6 @@ a {
 .allMoviesLink {
   color: lightgreen !important;
   text-decoration: underline !important;
-}
-
-.quickLink {
-  width: 100px;
-  background-color: white;
-  padding: 10px;
-  border-radius: 5px;
-  display: block;
-  img {
-    width: 80px;
-    height: 20px;
-    display: block;
-  }
 }
 
 .submitButton {
