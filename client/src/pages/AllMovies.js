@@ -2,13 +2,16 @@ import { React, useEffect, useState } from 'react';
 import DateCard from '../components/DateCard';
 import Header from '../components/Header';
 import StreamingCard from '../components/StreamingCard';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function AllMovies() {
   const [movieList, setMovieList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchAllMovies = async () => {
     const response = await fetch('/api/monthly');
     const json = await response.json();
+    setLoading(false);
     setMovieList(json);
     console.log(json);
   };
@@ -62,8 +65,16 @@ export default function AllMovies() {
 
   return (
     <div>
-      <div className=" mt-5 mb-4 d-flex m-auto quickLinks">{quickLinks}</div>
-      <div className="allMoviesContainer mt-3">{moviesByDate}</div>
+      <div className=" mt-4 mb-4 d-flex m-auto quickLinks">{quickLinks}</div>
+      {loading ? (
+        <div className="d-flex justify-content-center ">
+          <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      ) : (
+        <div className="allMoviesContainer mt-3">{moviesByDate}</div>
+      )}
     </div>
   );
 }

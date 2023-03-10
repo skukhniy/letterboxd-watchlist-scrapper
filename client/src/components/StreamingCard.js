@@ -33,10 +33,7 @@ export default function StreamingCard({
         movies.poster !== ''
     );
     movieHTML = filteredList.map((movie) => (
-      <div
-        style={{ width: '200px' }}
-        className="d-flex flex-column justify-content-center align-items-center movieCard mb-3 text-center"
-      >
+      <div className="d-flex flex-column justify-content-center align-items-center movieCard movieCardSmall mb-3 text-center">
         <a target="_blank">
           <div className="hoverPointer">
             <img className="" src={movie.poster}></img>
