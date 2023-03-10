@@ -19,7 +19,7 @@ export default function StreamingCard({
             <img className="" src={movie.poster}></img>
             <div className="mt-2">
               <span>{movie.title}</span>
-              <span>{` - ${movie.date}`}</span>
+              <span className="text-white-50">{` - ${movie.date}`}</span>
             </div>
           </div>
         </a>
@@ -33,11 +33,12 @@ export default function StreamingCard({
         movies.poster !== ''
     );
     movieHTML = filteredList.map((movie) => (
-      <div className="d-flex flex-column justify-content-center align-items-center movieCard movieCardSmall mb-3 text-center">
+      <div className="d-flex flex-column justify-content-center align-items-center movieCardSmall movieCardSmall mb-3 text-center">
         <a
           href={`https://www.letterboxd.com/film/${movie.movieTitle
             .replaceAll(' ', '-')
             .toLowerCase()}`}
+          target="_blank"
         >
           <div className="hoverPointer">
             <img className="" src={movie.poster}></img>
@@ -74,7 +75,13 @@ export default function StreamingCard({
       <div className="streamingLogo">
         <img src={imgArray[streamingName]}></img>
       </div>
-      <div className={forWatchlist === false ? 'allMoviesParent' : ''}>
+      <div
+        className={
+          forWatchlist === false
+            ? 'allMoviesParent'
+            : 'd-flex flex-column justify-content-center align-items-center'
+        }
+      >
         {filteredList.length > 0 ? (
           movieHTML
         ) : (
