@@ -59,7 +59,8 @@ export default function MainPage() {
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
-            <p>Please wait.</p> <p>Large watchlists may take longer to load.</p>
+            <p className="mt-3">Please wait..</p>{' '}
+            <p>Large watchlists may take longer to load.</p>
           </div>
         )}
       </div>

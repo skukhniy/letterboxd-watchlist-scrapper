@@ -21,6 +21,7 @@ function scrapeWatchlist(username) {
       .then((res) => {
         const html = res.data;
         const $ = cheerio.load(html);
+        console.log('data retrieved');
         const baseURL = 'https://letterboxd.com';
         // find div containers for each movie
         $('.poster-container', html).each((i, el) => {
@@ -92,11 +93,11 @@ exports.getMonthly = async (req, res) => {
 
 // returns filtered list of watchlist movies that were added to streaming this month
 exports.getCleanList = async (req, res) => {
-  console.time('cleanList');
   const cleanedList = [];
   const boxdList = await scrapeWatchlist(req.params.user);
   const newStreamingList = await Monthly.find();
 
+  console.time('cleanList');
   // loop through each movie from the watchlist
   for (const movie of boxdList) {
     // loop through each new movie on streaming
