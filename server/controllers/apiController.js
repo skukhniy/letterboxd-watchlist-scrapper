@@ -9,7 +9,6 @@ const e = require('express');
 
 // scrape and return array of movies on a users watchlist
 function scrapeWatchlist(username) {
-  console.time('scrapeWatchlist');
   const url = `https://letterboxd.com/${username}/watchlist`;
 
   // array to store watchlist movie data
@@ -47,7 +46,6 @@ function scrapeWatchlist(username) {
     return movies;
   };
   // recurrsion func, returns full movie list
-  console.timeEnd('scrapeWatchlist');
   return dispatchRequest(1);
 }
 
@@ -94,6 +92,7 @@ exports.getMonthly = async (req, res) => {
 
 // returns filtered list of watchlist movies that were added to streaming this month
 exports.getCleanList = async (req, res) => {
+  console.time('cleanList');
   const cleanedList = [];
   const boxdList = await scrapeWatchlist(req.params.user);
   const newStreamingList = await Monthly.find();
@@ -106,7 +105,6 @@ exports.getCleanList = async (req, res) => {
       if (movie.title === streamingObj.movieTitle) {
         // console.log("looping");
         const moviePoster = await getMoviePosterURL(movie.title);
-        console.log(moviePoster);
 
         cleanedList.push({
           title: movie.title,
@@ -119,7 +117,7 @@ exports.getCleanList = async (req, res) => {
       }
     }
   }
-
+  console.timeEnd('cleanList');
   try {
     console.log('res sent');
     // console.log(cleanedList);

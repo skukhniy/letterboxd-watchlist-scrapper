@@ -37,6 +37,7 @@ export default function StreamingCard({
         <a
           href={`https://www.letterboxd.com/film/${movie.movieTitle
             .replaceAll(' ', '-')
+            .replaceAll(':', '')
             .toLowerCase()}`}
           target="_blank"
         >
@@ -72,7 +73,10 @@ export default function StreamingCard({
   return (
     <div className={`pb-4 mb-3 streamingCard`} id={streamingName}>
       <div className="streamingLogo">
-        <img src={imgArray[streamingName]}></img>
+        <img
+          style={{ width: streamingName === 'PARAMOUNT+' ? '25%' : '' }}
+          src={imgArray[streamingName]}
+        ></img>
       </div>
       <div
         className={
