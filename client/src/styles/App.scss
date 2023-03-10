@@ -144,6 +144,32 @@ a {
   text-decoration: underline !important;
 }
 
+.scrollToTop {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ffffff;
+  border-radius: 100%;
+  position: fixed;
+  bottom: 40px;
+  left: 50px;
+  font-size: 3rem;
+  z-index: 1;
+  cursor: pointer;
+  color: gray;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  background-color: transparent;
+  animation: fadeIn 3s;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
 .submitButton {
   height: 33px;
   padding-left: 15px;

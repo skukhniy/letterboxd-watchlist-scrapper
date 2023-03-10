@@ -3,6 +3,7 @@ import DateCard from '../components/DateCard';
 import Header from '../components/Header';
 import StreamingCard from '../components/StreamingCard';
 import Spinner from 'react-bootstrap/Spinner';
+import ScrollToTop from '../components/ScrollToTop';
 
 export default function AllMovies() {
   const [movieList, setMovieList] = useState([]);
@@ -73,7 +74,10 @@ export default function AllMovies() {
           </Spinner>
         </div>
       ) : (
-        <div className="allMoviesContainer mt-3">{moviesByDate}</div>
+        <div className="allMoviesContainer mt-3">
+          {moviesByDate}
+          <ScrollToTop />
+        </div>
       )}
     </div>
   );
