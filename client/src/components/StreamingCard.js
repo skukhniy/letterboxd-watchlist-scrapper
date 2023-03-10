@@ -34,7 +34,11 @@ export default function StreamingCard({
     );
     movieHTML = filteredList.map((movie) => (
       <div className="d-flex flex-column justify-content-center align-items-center movieCard movieCardSmall mb-3 text-center">
-        <a target="_blank">
+        <a
+          href={`https://www.letterboxd.com/film/${movie.movieTitle
+            .replaceAll(' ', '-')
+            .toLowerCase()}`}
+        >
           <div className="hoverPointer">
             <img className="" src={movie.poster}></img>
             <div className="mt-2">
@@ -75,7 +79,7 @@ export default function StreamingCard({
           movieHTML
         ) : (
           <div>
-            <p>N/A</p>
+            <p>Nothing new for this month :(</p>
           </div>
         )}
       </div>
