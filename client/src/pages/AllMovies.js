@@ -14,7 +14,6 @@ export default function AllMovies() {
     const json = await response.json();
     setLoading(false);
     setMovieList(json);
-    console.log(json);
   };
 
   useEffect(() => {

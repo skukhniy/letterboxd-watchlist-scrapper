@@ -31,7 +31,7 @@ export default function ScrollToTop() {
       <svg
         fill="#ffffff"
         height="30px"
-        width="40px"
+        width="30px"
         version="1.1"
         id="Layer_1"
         xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ export default function ScrollToTop() {
       <svg
         fill="#ffffff"
         height="35px"
-        width="40px"
+        width="35px"
         version="1.1"
         id="Layer_2"
         xmlns="http://www.w3.org/2000/svg"

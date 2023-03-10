@@ -51,7 +51,6 @@ export default function StreamingCard({
       </div>
     ));
   }
-  console.log(filteredList);
   // create html elements
 
   // hold source for each logo image

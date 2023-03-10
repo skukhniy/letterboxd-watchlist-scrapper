@@ -19,7 +19,6 @@ export default function MainPage() {
       setError('');
       setLoading(true);
       const response = await fetch(`/api/new/${boxdUser}`);
-      console.log(response);
       const json = await response.json();
       setLoading(false);
       if (response.ok) {
@@ -33,12 +32,9 @@ export default function MainPage() {
         } else {
           setBoxdStreaming(json);
         }
-
-        console.log(json);
       }
     }
   };
-  console.log(boxdStreaming !== []);
 
   return (
     <div className="App text-center">
