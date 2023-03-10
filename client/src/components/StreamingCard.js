@@ -19,7 +19,7 @@ export default function StreamingCard({
             <img className="" src={movie.poster}></img>
             <div className="mt-2">
               <span>{movie.title}</span>
-              <span className="text-white-50">{` - ${movie.date}`}</span>
+              <p className="text-white-50">{`${movie.date}`}</p>
             </div>
           </div>
         </a>
@@ -33,7 +33,7 @@ export default function StreamingCard({
         movies.poster !== ''
     );
     movieHTML = filteredList.map((movie) => (
-      <div className="d-flex flex-column justify-content-center align-items-center movieCardSmall movieCardSmall mb-3 text-center">
+      <div className="d-flex flex-column justify-content-center align-items-center movieCard movieCardSmall mb-3 text-center">
         <a
           href={`https://www.letterboxd.com/film/${movie.movieTitle
             .replaceAll(' ', '-')

@@ -114,6 +114,7 @@ body {
     text-decoration: underline;
   }
 }
+
 .movieCardSmall {
   width: 200px;
 }
@@ -159,7 +160,7 @@ a {
   padding-bottom: 5px;
   padding-top: 5px;
   background-color: transparent;
-  animation: fadeIn 3s;
+  animation: fadeIn 2s;
   @keyframes fadeIn {
     0% {
       opacity: 0;

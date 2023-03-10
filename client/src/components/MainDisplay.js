@@ -1,4 +1,5 @@
 import React from 'react';
+import ScrollToTop from './ScrollToTop';
 import StreamingCard from './StreamingCard';
 
 export default function MainDisplay({ boxdStreaming }) {
@@ -39,6 +40,7 @@ export default function MainDisplay({ boxdStreaming }) {
         streamingName={'DISNEY+'}
         forWatchlist={true}
       />
+      <ScrollToTop />
     </div>
   );
 }
