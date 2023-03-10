@@ -2,8 +2,7 @@
 ![watchboxd pic](https://www.stanislavkukhniy.com/static/media/watchboxd.a5e5882b.png)
 
 ### [Live Demo](http://watchboxd.stanislavkukhniy.com)
-If you dont have a Letterboxd account, you can use my account (Stanisloth) to test the app! Expect to wait about 10 seconds for the data to load if you use my account name, I have a pretty big watchlist :)
-
+If you dont have a Letterboxd account, you can use my account (Stanisloth) to test the app! Expect to wait about 10 seconds for the data to load if you use my account name, I have a lot of movies in my watchlist :)
 #### 📝 Description
 This MERN-stack app scrapes the HTML of a users Letterboxd movie watchlist, and news articles, to return a clean list of movies from their watchlist that were added to streaming services that month.
 
